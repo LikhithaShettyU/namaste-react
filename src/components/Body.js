@@ -1,9 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+import UserContext from "../utils/UserContext";
 
 
 const Body = () => {
@@ -15,7 +15,7 @@ const Body = () => {
     const [searchText, setSearchText] = useState("");
 
     // Whenever state variable update, react triggers a renconcilation cycle(re-renders the component)
-    console.log("Body Rendered");
+    console.log("Body Rendered", listOfRestaurants);
 
     useEffect(() => {
           fetchData();
@@ -35,6 +35,8 @@ const Body = () => {
   
   };
 
+  
+
   const onlineStatus = useOnlineStatus();
 
   if (onlineStatus === false)
@@ -43,6 +45,8 @@ const Body = () => {
         Looks like you're offline!! Please check your internet connection;
       </h1>
   );
+
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
 
     return listOfRestaurants.length === 0 ? <Shimmer /> : (
@@ -75,17 +79,11 @@ const Body = () => {
                   </button>
                 </div>
                 <div className="flex items-center">
-                <button 
-                    className="px-4 py-2 bg-gray-200 rounded-lg" 
-                    onClick={() => {
-                        const filteredList = listOfRestaurants.filter(
-                            (res) => res.info.avgRating > 4.5
-                        );
-                        setListOfRestaurant(filteredList);
-                    }}
-                >
-                    Top Rated Restaurants
-                </button>
+                   <label>UserName</label>
+                   <input 
+                   className="border border-black p-2" 
+                   value={loggedInUser}
+                   onChange={(e) => setUserName(e.target.value)}/>
                 </div>
             </div>
             <div className="flex flex-wrap">
