@@ -23,18 +23,25 @@ const Body = () => {
 
     const fetchData = async () => {
   
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0440477&lng=77.62086599999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+   // const data = await fetch(
+      //"https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0440477&lng=77.62086599999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+   // );
+
+      const data = await fetch(
+       "https://namastedev.com/api/v1/listRestaurants"
     );
 
     const json = await data.json();
 
     
-    setListOfRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setFilterdRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-  
+    //setListOfRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    //setFilterdRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+    setListOfRestaurant(json?.data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants ?? []);
+    setFilterdRestaurant(json?.data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants ?? []);
   };
 
+ 
   
 
   const onlineStatus = useOnlineStatus();
