@@ -61,5 +61,24 @@
  - Client Side Routing
  - Server Side Routing
 
+# Redux Toolkit
+ - Install @reduxjs/toolkit and react-redux
+ - Build our store
+ - Connect our store to our app
+ - Slice (cartSlice) 
+ - dispatch (action)
+ - Selector
+
+ # Types of testing (devloper)
+ - Unit Testing
+ - Integration Testing
+ - End to End Testing - e2e testing
+
+ # Setting up Testing in our app
+  - Install React Testing Library
+  - Installed jest
+  - Installed Babel dependencies
+  - Configure babel
+
 
 
